@@ -22,6 +22,7 @@ This project demonstrates different ways to run and deploy Camel routes. The app
 - Maven 3
 - Git
  
+Linux operating system is assumed but the process is probably similar (but not exactly the same) on other OSes.
 
 Clone this repository and change into cloned directory.
 ```shell
