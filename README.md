@@ -1,5 +1,5 @@
 # Camel Deployment
-This project demonstrates different ways to run and deploy Camel routes. The app itself is a simple Spring-based Camel route that prints greetings based on configured Camel Properties. There are have comments on the [pom.xml](pom.xml) so you know which part is responsible for each command. You don't have to read every part, just read [At first](#at-first) and then you can skip to a part that interests you.
+This project demonstrates different ways to run and deploy Camel routes. The app itself is a simple Spring-based Camel route that prints greetings based on configured Camel Properties. There are comments on the [pom.xml](pom.xml) so you know which part is responsible for each command. You don't have to read every part, just read [At first](#at-first) and then you can skip to a part that interests you.
 
   * [At first](#at-first)
   * [Different Deployments](#different-deployments)
@@ -37,7 +37,7 @@ The difference between these two is that that exec-maven-plugin requires that yo
 ```
 <mainClass>com.example.MainApp</mainClass>
 ```
-The camel-maven-plugin doesn't need [MainApp.java](src/main/java/MainApp.java) since the plugin creates automatically similar main-method where it runs the route.
+The camel-maven-plugin doesn't need [MainApp.java](src/main/java/com/example/MainApp.java) since the plugin creates automatically similar main-method where it runs the route.
 
 
 ### Run Camel route in Eclipse IDE
@@ -58,7 +58,7 @@ By using [maven-assembly-plugin](http://maven.apache.org/plugins/maven-assembly-
 mvn clean package
 java -jar target/*-jar-with-dependencies.jar
 ```
-If you copy the jar file that was created to any environment where you have JRE installed you can run your Camel route with that single *'java -jar <file>'* line.
+If you copy the jar file that was created to any environment where you have JRE installed you can run your Camel route with that single *'java -jar \<file>'* line above.
 
 ### Deploy Camel route in Apache Karaf as OSGi bundle
 You can package Camel routes as OSGi bundles with [maven-bundle-plugin](http://felix.apache.org/documentation/subprojects/apache-felix-maven-bundle-plugin-bnd.html). OSGi bundles can be deployed into OSGi container such as [Apache Karaf](http://karaf.apache.org/). I've created a helper script that will install Karaf into camel-deployment folder and deploy this project to it. You can get started by
@@ -108,14 +108,14 @@ karaf@root()> feature:install camel-spring
 karaf@root()> bundle:install -s mvn:com.example/camel-deployment-bundle/1.0-SNAPSHOT
 karaf@root()> log:tail
 ```
-What is different here compared to the [deploy-to-karaf.sh](deploy-to-karaf.sh) script is that for convenience there has been created deployable [Karaf archive](https://karaf.apache.org/manual/latest/users-guide/kar.html) file [lib/camel-deployment-karaf-dependencies-kar-1.0-SNAPSHOT.kar](lib/camel-deployment-karaf-dependencies-kar-1.0-SNAPSHOT.kar) that installs camel-core and camel-spring features so one don't have input those commands by hand. Also the script installs compiled bundle from target folder where as this method installs the same bundle from local Maven repository.
+What is different here compared to the [deploy-to-karaf.sh](deploy-to-karaf.sh) script is that for convenience there have been created deployable [Karaf archive](https://karaf.apache.org/manual/latest/users-guide/kar.html) file [lib/camel-deployment-karaf-dependencies-kar-1.0-SNAPSHOT.kar](lib/camel-deployment-karaf-dependencies-kar-1.0-SNAPSHOT.kar) that installs camel-core and camel-spring features so one don't have input those commands by hand. Also the script installs compiled bundle from target folder where as this method installs the same bundle from local Maven repository.
 
 If you are interested in the Kar archive used then you can see the source in [camel-deployment-kar](https://github.com/jnupponen/camel-deployment-kar) project.
 
 ### Deploy Camel route in Heroku
 Heroku is company that offers Platform-as-a-Service runtimes for different programming languages. You must register first (registering is free and running this example won't cost you anything). Sign up in here [https://www.heroku.com/](https://www.heroku.com/). After that you must install Heroku toolbelt. Here is guide for Debian family of Linuxes but you can check for other platforms here [https://toolbelt.heroku.com/](https://toolbelt.heroku.com/).
 
-Change *<arbitrary-application-name>* with name of your own, e.g. "my-cool-camel-heroku-deployment". Also if you don't live in Europe you can consider using another region than 'eu' (the default is 'us').
+Change *\<arbitrary-application-name>* with name of your own, e.g. "my-cool-camel-heroku-deployment". Also if you don't live in Europe you can consider using another region than 'eu' (the default is 'us').
 ```
 wget -O- https://toolbelt.heroku.com/install-ubuntu.sh | sh
 heroku login
