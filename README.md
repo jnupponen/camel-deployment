@@ -27,7 +27,7 @@ cd camel-deployment
 ### Run Camel route in command line
 There are two options: first one is to use [exec-maven-plugin](http://www.mojohaus.org/exec-maven-plugin/) like this
 ```
-mvn clean exec:java
+mvn compile exec:java
 ```
 and the other option is using [camel-maven-plugin](http://camel.apache.org/camel-maven-plugin.html) like this
 ```
