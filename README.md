@@ -63,9 +63,9 @@ If you copy the jar file that was created to any environment where you have JRE 
 ### Deploy Camel route in Apache Karaf as OSGi bundle
 You can package Camel routes as OSGi bundles with [maven-bundle-plugin](http://felix.apache.org/documentation/subprojects/apache-felix-maven-bundle-plugin-bnd.html). OSGi bundles can be deployed into OSGi container such as [Apache Karaf](http://karaf.apache.org/). I've created a helper script that will install Karaf into camel-deployment folder and deploy this project to it. You can get started by
 ```
-$ mvn clean install
-$ bash deploy-to-karaf.sh
-$ apache-karaf/bin/client
+mvn clean install
+bash deploy-to-karaf.sh
+apache-karaf/bin/client
 ```
 If you get "Failed to get the session" error when you put in *apache-karaf/bin/client* command then just wait a bit and try again. Karaf is not just fully started yet. When you are able to connect (after 10 seconds maybe) you will be greeted with Karaf console like this:
 ```
