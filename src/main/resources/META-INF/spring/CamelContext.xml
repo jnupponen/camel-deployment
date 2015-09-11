@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:camel="http://camel.apache.org/schema/spring"
+       xsi:schemaLocation="
+          http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+          http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+    <!-- If nothing is done at startup, Camel will use dev.properties -->
+    <!-- If Environment variable RUN_PROPERTIES is set then Camel will -->
+    <!-- try to load that file in classpath, e.g. 'prod.properties'. -->
+    <!-- If JVM System variable karaf.home is set then Camel will use that. -->
+    <bean id="properties" class="org.apache.camel.component.properties.PropertiesComponent">
+        <property name="location" value=
+        "classpath:dev.properties,
+        classpath:${env:RUN_PROPERTIES}.properties,
+        file:${karaf.home}/etc/com.example.cfg"/>
+        <property name="ignoreMissingLocation" value="true"/>
+    </bean>
+
+    <bean id="route" class="com.example.HelloRouteBuilder"/>
+    
+    <camelContext xmlns="http://camel.apache.org/schema/spring">
+        <contextScan />
+    </camelContext>
+</beans>

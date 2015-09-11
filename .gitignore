@@ -1,0 +1,7 @@
+.classpath
+.project
+.settings/
+target/
+.README.md.html
+apache-karaf.tar.gz
+apache-karaf/
