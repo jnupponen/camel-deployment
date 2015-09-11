@@ -17,9 +17,20 @@ This project demonstrates different ways to run and deploy Camel routes. The app
 
 
 ## At first
+**Prerequisites:** Running these deployment examples requires you to have at least following software installed
+- Java JDK 7 or Java JDK 8
+- Maven 3
+- Git
+ 
+
 Clone this repository and change into cloned directory.
 ```shell
 git clone git@github.com:jnupponen/camel-deployment.git
+cd camel-deployment
+```
+or
+```shell
+git clone https://github.com/jnupponen/camel-deployment.git
 cd camel-deployment
 ```
 
