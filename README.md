@@ -119,7 +119,7 @@ karaf@root()> feature:install camel-spring
 karaf@root()> bundle:install -s mvn:com.example/camel-deployment-bundle/1.0-SNAPSHOT
 karaf@root()> log:tail
 ```
-What is different here compared to the [deploy-to-karaf.sh](deploy-to-karaf.sh) script is that for convenience there have been created deployable [Karaf archive](https://karaf.apache.org/manual/latest/users-guide/kar.html) file [lib/camel-deployment-karaf-dependencies-kar-1.0-SNAPSHOT.kar](lib/camel-deployment-karaf-dependencies-kar-1.0-SNAPSHOT.kar) that installs camel-core and camel-spring features so one don't have input those commands by hand. Also the script installs compiled bundle from target folder where as this method installs the same bundle from local Maven repository.
+What is different here compared to the [deploy-to-karaf.sh](deploy-to-karaf.sh) script is that the script is using for convenience deployable [Karaf archive](https://karaf.apache.org/manual/latest/users-guide/kar.html) file [lib/camel-deployment-karaf-dependencies-kar-1.0-SNAPSHOT.kar](lib/camel-deployment-karaf-dependencies-kar-1.0-SNAPSHOT.kar) that installs camel-core and camel-spring features so one don't have input those commands by hand. Also the script installs compiled bundle from target folder where as this method installs the same bundle from local Maven repository.
 
 If you are interested in the Kar archive used then you can see the source in [camel-deployment-kar](https://github.com/jnupponen/camel-deployment-kar) project.
 
