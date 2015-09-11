@@ -142,20 +142,20 @@ docker run -t -i example
 ## Configuring Camel routes with Camel Properties in each deployment
 There is simple configuration included to this example because setting environment specific variables is something that comes across a lot. The example uses [Camel Properties Component](http://camel.apache.org/properties.html) that is shipped with camel-core. The route in this example is as simple as this
 ```java
-        // Print happy greeting every five seconds.
-        // To who depends on Camel Properties with key 'friend'.
-        from("timer://mytimer?period=5s")
-        .log("Hello, {{friend}}!");
+// Print happy greeting every five seconds.
+// To who depends on Camel Properties with key 'friend'.
+from("timer://mytimer?period=5s")
+    .log("Hello, {{friend}}!");
 ```
 Camel Properties component is configured as follows
 ```xml
-    <bean id="properties" class="org.apache.camel.component.properties.PropertiesComponent">
-        <property name="location" value=
-        "classpath:dev.properties,
-        classpath:${env:RUN_PROPERTIES}.properties,
-        file:${karaf.home}/etc/com.example.cfg"/>
-        <property name="ignoreMissingLocation" value="true"/>
-    </bean>
+<bean id="properties" class="org.apache.camel.component.properties.PropertiesComponent">
+    <property name="location" value=
+    "classpath:dev.properties,
+    classpath:${env:RUN_PROPERTIES}.properties,
+    file:${karaf.home}/etc/com.example.cfg"/>
+    <property name="ignoreMissingLocation" value="true"/>
+</bean>
 ```
 So by default Camel will use [dev.properties](src/main/resources/dev.properties) and the output of the route is 
 ```
