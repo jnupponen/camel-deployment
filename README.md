@@ -18,7 +18,7 @@ This project demonstrates different ways to run and deploy Camel routes. The app
 
 ## At first
 Clone this repository and change into cloned directory.
-```
+```shell
 git clone git@github.com:jnupponen/camel-deployment.git
 cd camel-deployment
 ```
@@ -26,15 +26,15 @@ cd camel-deployment
 ## Different Deployments
 ### Run Camel route in command line
 There are two options: first one is to use [exec-maven-plugin](http://www.mojohaus.org/exec-maven-plugin/) like this
-```
+```shell
 mvn compile exec:java
 ```
 and the other option is using [camel-maven-plugin](http://camel.apache.org/camel-maven-plugin.html) like this
-```
+```shell
 mvn clean camel:run
 ```
 The difference between these two is that that exec-maven-plugin requires that you have class with main-method and have configured it to exec-maven-plugin in pom.xml like this
-```
+```xml
 <mainClass>com.example.MainApp</mainClass>
 ```
 The camel-maven-plugin doesn't need [MainApp.java](src/main/java/com/example/MainApp.java) since the plugin creates automatically similar main-method where it runs the route.
@@ -54,7 +54,7 @@ Then you can run route in Eclipse by double-clicking MainApp.java in the Project
 
 ### Run Camel route as a standalone Java application
 By using [maven-assembly-plugin](http://maven.apache.org/plugins/maven-assembly-plugin/) Maven is able to group all required dependencies into one large jar file which can be then executed everywhere where Java Runtime Environment is available. You can use this option like this
-```
+```shell
 mvn clean package
 java -jar target/*-jar-with-dependencies.jar
 ```
@@ -62,7 +62,7 @@ If you copy the jar file that was created to any environment where you have JRE 
 
 ### Deploy Camel route in Apache Karaf as OSGi bundle
 You can package Camel routes as OSGi bundles with [maven-bundle-plugin](http://felix.apache.org/documentation/subprojects/apache-felix-maven-bundle-plugin-bnd.html). OSGi bundles can be deployed into OSGi container such as [Apache Karaf](http://karaf.apache.org/). I've created a helper script that will install Karaf into camel-deployment folder and deploy this project to it. You can get started by
-```
+```shell
 mvn clean install
 bash deploy-to-karaf.sh
 apache-karaf/bin/client
@@ -92,7 +92,7 @@ karaf@root()> log:tail
 #### Deploy Camel route in Apache Karaf as OSGi bundle, the long version
 If you are curious what just happened or want to make the similar steps by hand then here they are.
 - First download, extract, start and connect to Karaf:
-```
+```shell
 mvn clean install
 wget http://www.nic.funet.fi/pub/mirrors/apache.org/karaf/3.0.4/apache-karaf-3.0.4.tar.gz -O apache-karaf.tar.gz
 mkdir apache-karaf
@@ -116,7 +116,7 @@ If you are interested in the Kar archive used then you can see the source in [ca
 Heroku is company that offers Platform-as-a-Service runtimes for different programming languages. You must register first (registering is free and running this example won't cost you anything). Sign up in here [https://www.heroku.com/](https://www.heroku.com/). After that you must install Heroku toolbelt. Here is guide for Debian family of Linuxes but you can check for other platforms here [https://toolbelt.heroku.com/](https://toolbelt.heroku.com/).
 
 Change *\<arbitrary-application-name>* with name of your own, e.g. "my-cool-camel-heroku-deployment". Also if you don't live in Europe you can consider using another region than 'eu' (the default is 'us').
-```
+```shell
 wget -O- https://toolbelt.heroku.com/install-ubuntu.sh | sh
 heroku login
 heroku create <arbitrary-application-name> --region eu
@@ -128,27 +128,27 @@ If you would rather use *'git push heroku master'* deployment then there is opti
 
 ### Deploy Camel route in Docker
 [Docker](https://www.docker.com/) in a container service that runs on top of Linux (kind of like a virtual machine but without the virtualization). If you want to deploy your Camel routes in Docker container you must set up Docker first like this (this guide is for Ubuntu 14.04, for other platforms see [https://docs.docker.com/installation/](https://docs.docker.com/installation/)).
-```
+```shell
 curl -sSL https://get.docker.com/ | sh
 sudo usermod -aG docker $USER        # Allows you to run Docker without sudo.
 exec su -l $USER                     # Will refresh user group so no logout needed.
 ```
 Then you can create and deploy your Camel route in Docker using [docker-maven-plugin](https://github.com/spotify/docker-maven-plugin) like this
-```
+```shell
 mvn clean package docker:build
 docker run -t -i example
 ```
 
 ## Configuring Camel routes with Camel Properties in each deployment
 There is simple configuration included to this example because setting environment specific variables is something that comes across a lot. The example uses [Camel Properties Component](http://camel.apache.org/properties.html) that is shipped with camel-core. The route in this example is as simple as this
-```
+```java
         // Print happy greeting every five seconds.
         // To who depends on Camel Properties with key 'friend'.
         from("timer://mytimer?period=5s")
         .log("Hello, {{friend}}!");
 ```
 Camel Properties component is configured as follows
-```
+```xml
     <bean id="properties" class="org.apache.camel.component.properties.PropertiesComponent">
         <property name="location" value=
         "classpath:dev.properties,
@@ -163,7 +163,7 @@ Hello, me!
 ``` 
 
 If there is Environment variable RUN_PROPERTIES set like this
-```
+```shell
 export RUN_PROPERTIES=prod
 ```
 then the Camel tries to read [prod.properties](src/main/resources/prod.properties) from the classpath. Please note that resolving Camel properties is not dynamic so you must restart Camel which ever way you where running it if you have changed the properties.
@@ -172,12 +172,12 @@ The third definition *file:${karaf.home}/etc/com.example.cfg* is Karaf and OSGi 
 
 ### Choosing which configuration to use in Docker and Heroku
 In Docker you can start the container image with '-e' parameter that will pass environment variables to the container like this
-```
+```shell
 docker run -e RUN_PROPERTIES=prod -t -i example
 ```
 
 In Heroku you can set environment variables like this
-```
+```shell
 heroku config:set RUN_PROPERTIES=prod
 heroku logs --tail
 ```
