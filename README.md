@@ -24,6 +24,8 @@ This project demonstrates different ways to run and deploy Camel routes. The app
  
 Linux operating system is assumed but the process is probably similar (but not exactly the same) on other OSes.
 
+There is a preconfigured Vagrant environment available in [vagrant](vagrant) folder for users who don't want / can't run these locally.
+
 Clone this repository and change into cloned directory.
 ```shell
 git clone git@github.com:jnupponen/camel-deployment.git
