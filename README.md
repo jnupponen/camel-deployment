@@ -75,7 +75,7 @@ java -jar target/*-jar-with-dependencies.jar
 If you copy the jar file that was created to any environment where you have JRE installed you can run your Camel route with that single *'java -jar \<file>'* line above.
 
 ### Deploy Camel route in Apache Karaf as OSGi bundle
-You can package Camel routes as OSGi bundles with [maven-bundle-plugin](http://felix.apache.org/documentation/subprojects/apache-felix-maven-bundle-plugin-bnd.html). OSGi bundles can be deployed into OSGi container such as [Apache Karaf](http://karaf.apache.org/). I've created a helper script that will install Karaf into camel-deployment folder and deploy this project to it. You can get started by
+You can package Camel routes as OSGi bundles with [maven-bundle-plugin](http://felix.apache.org/documentation/subprojects/apache-felix-maven-bundle-plugin-bnd.html). OSGi bundles can be deployed into OSGi container such as [Apache Karaf](http://karaf.apache.org/). There is a helper script [deploy-to-karaf.sh](deploy-to-karaf.sh) that will download and install Karaf into camel-deployment folder and deploy this project to it. You can get started by
 ```shell
 mvn clean install
 bash deploy-to-karaf.sh
