@@ -1,6 +1,10 @@
 # Vagrant environment for running this tutorial
 This folder has [Vagrantfile](Vagrantfile) that starts Ubuntu 14.04 operating system in virtual environment and installs all required prerequisites automatically.
 
+**Prerequisites:**
+- Vagrant [http://www.vagrantup.com/downloads.html](http://www.vagrantup.com/downloads.html)
+- VirtualBox [https://www.virtualbox.org/wiki/Downloads](https://www.virtualbox.org/wiki/Downloads)
+
 ## Usage
 ```shell
 vagrant up
