@@ -10,7 +10,7 @@ git clone https://github.com/jnupponen/camel-deployment.git
 cd camel-deployment
 ```
 
-After that you can continue to follow [Different Deployments](/#different-deployments).
+After that you can continue to follow [Different Deployments](#different-deployments).
 
 **Note!** If asked password in Vagrant environment, the default password is 'vagrant'.
 
