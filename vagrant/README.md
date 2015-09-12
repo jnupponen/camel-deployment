@@ -7,9 +7,13 @@ This folder has [Vagrantfile](Vagrantfile) that starts Ubuntu 14.04 operating sy
 
 ## Usage
 ```shell
+git clone https://github.com/jnupponen/camel-deployment.git
+cd camel-deployment/vagrant/
 vagrant up
 vagrant ssh
-
+```
+The *vagrant ssh* command will take you into virtual Ubuntu environment. Clone this repository into that environment also and you are ready to continue this tutorial:
+```shell
 git clone https://github.com/jnupponen/camel-deployment.git
 cd camel-deployment
 ```
